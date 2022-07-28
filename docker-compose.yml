@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  voilasnap-api:
+    network_mode: bridge
+    container_name: voilasnap-api
+    restart: always
+    build:
+      context: ./voilasnap-api
+      dockerfile: "Dockerfile"
+    command: ["yarn", "start"]
+    env_file:
+      - ./.env
+    labels:
+      - "traefik.backend=voilasnap-api"
+      - "traefik.frontend.rule=Host:voilasnap.cf"
+      - "traefik.frontend.entryPoints=https"
+      - "traefik.port=3000"

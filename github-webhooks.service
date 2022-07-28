@@ -1,0 +1,12 @@
+[Unit]
+Description=From Github to Docker deployment
+After=network.target
+
+[Service]
+Restart=always
+WorkingDirectory=/home/leandre/
+ExecStart=/usr/bin/node /home/leandre/github-webhooks.js
+
+[Install]
+WantedBy=default.target
+
